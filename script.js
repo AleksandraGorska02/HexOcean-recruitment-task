@@ -8,7 +8,7 @@ const sandwichFields = document.getElementById('sandwich-fields');
 // Add event listener to typeField
 typeField.addEventListener('change', function () {
   const selectedType = typeField.value;
-  
+
   // Hide all fields
   hideAllFields();
 
@@ -30,7 +30,7 @@ function hideAllFields() {
 }
 
 // Submit event listener
-form.addEventListener('submit', function (e) {
+form.addEventListener('submit', async function (e) {
   e.preventDefault();
 
   // Get form values
@@ -59,21 +59,18 @@ form.addEventListener('submit', function (e) {
     data.slices_of_bread = parseInt(slicesOfBread);
   }
 
-  // Make POST request
-  fetch('https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/', {
+  const url = 'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/';
+
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
-  })
-    .then(response => response.json())
-    .then(result => {
-      console.log(result);
-      // Handle success response here
-    })
-    .catch(error => {
-      console.error(error);
-      // Handle error here
-    });
+  });
+
+  const text = await response.text();
+
+  console.log(text);
 });

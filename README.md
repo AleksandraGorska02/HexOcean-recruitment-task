@@ -1,2 +1,2 @@
 # HexOcean-recruitment-task
-HexOcean recruitment task. you should through download and enable using live Serwer
+HexOcean recruitment task. you should through download and enable using live Server
